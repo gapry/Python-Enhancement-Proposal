@@ -8,3 +8,9 @@
   $ python -V
   Python 3.8.0
   ```
+- [YAPF - A formatter for Python files](https://github.com/google/yapf)
+  ```
+  $ sudo pip install yapf
+  $ yapf -v
+  yapf 0.29.0
+  ```
