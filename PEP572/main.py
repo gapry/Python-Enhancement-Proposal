@@ -8,7 +8,6 @@ def get_pair(threshold, upper, best_value, alpha, beta) -> (int, int):
 def show_pair(alpha, beta):
   print("alpha = %d" % alpha)
   print("beta  = %d" % beta)
-  
 
 if __name__ == '__main__':
   alpha = random.randint(1, 2 << 1)
