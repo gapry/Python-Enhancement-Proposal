@@ -1,3 +1,14 @@
+#!/usr/bin/env python
+
+__author__     = "Gapry"
+__copyright__  = "Copyright 2020, Gapry"
+__date__       = "2020/01/14"
+__deprecated__ = False
+__license__    = "MIT"
+__maintainer__ = "Gapry"
+__status__     = "PoC"
+__version__    = "1.0.0"
+
 import random
 
 def get_pair(threshold, upper, best_value, alpha, beta) -> (int, int):
