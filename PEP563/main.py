@@ -1,4 +1,15 @@
+#!/usr/bin/env python
+
 from __future__ import annotations
+
+__author__     = "Gapry"
+__copyright__  = "Copyright 2020, Gapry"
+__date__       = "2020/01/14"
+__deprecated__ = False
+__license__    = "MIT"
+__maintainer__ = "Gapry"
+__status__     = "PoC"
+__version__    = "1.0.0"
 
 class Student:
   def __init__(self, m_name, m_id):
