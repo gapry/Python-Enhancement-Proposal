@@ -11,6 +11,7 @@ def even_list(f):
 
 @even_list
 def make_list(*args, **kwargs):
+  print(f'[even_list closure] {even_list(make_list).__closure__}')
   return [elem for elem in args] + [value for value in kwargs.values()]
 
 def main():
