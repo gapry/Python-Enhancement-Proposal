@@ -16,7 +16,7 @@ def make_list(*args, **kwargs):
   return xs + ys
 
 def main():
-  print(f'sum(list) = {make_list(1, 2, 3, x = 4, y = 5, z = 6)}')
+  print(f'sum_list(make_list) = {make_list(1, 2, 3, x = 4, y = 5, z = 6)}')
 
 if __name__ == '__main__':
   main()
