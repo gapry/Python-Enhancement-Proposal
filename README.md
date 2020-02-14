@@ -16,5 +16,6 @@
   ```
 
 ## Examples
+- [PEP 318 -- Decorators for Functions and Methods](PEP318/main.py)
 - [PEP 563 -- Postponed Evaluation of Annotations](PEP563/main.py)
 - [PEP 572 -- Assignment Expressions](PEP572/main.py)
