@@ -10,8 +10,7 @@ def sum_list(f):
 
 @sum_list
 def make_list(*args, **kwargs):
-  def predicate(x):
-    return x >> 1 << 1
+  predicate = lambda x: x >> 1 << 1
   xs = [elem for elem in args if elem == predicate(elem)] 
   ys = [value for value in kwargs.values() if value != predicate(value)]
   return xs + ys
