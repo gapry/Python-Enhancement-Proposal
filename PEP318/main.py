@@ -12,7 +12,7 @@ def even_list(f):
 @even_list
 def make_list(*args, **kwargs):
   print(f'[even_list closure] {even_list(make_list).__closure__}')
-  return [elem for elem in args] + [value for value in kwargs.values()]
+  return list(args) + list(kwargs.values())
 
 def main():
   print(f'even_list(make_list) = {make_list(1, 2, 3, x = 4, y = 5, z = 6)}')
