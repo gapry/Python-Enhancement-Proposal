@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+class log():
+  def __call__(self, f):
+    def wrap(*args, **kwargs):
+      print(f'[log] ${f}')
+      return f(*args, **kwargs)
+    return wrap
+
 def even_list(f):
   predicate = lambda x: x == x >> 1 << 1
   def wrap(*args, **kwargs):
@@ -9,6 +16,7 @@ def even_list(f):
     return list(filter(predicate, f(*args, **kwargs)))
   return wrap
 
+@log()
 @even_list
 def make_list(*args, **kwargs):
   print(f'[even_list closure] {even_list(make_list).__closure__}')
