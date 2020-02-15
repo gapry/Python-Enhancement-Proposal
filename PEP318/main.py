@@ -14,16 +14,18 @@ class log():
 
 def even_list(*args, **kwargs):
   "take the class wrap as a return"
-  print(f'*args      = {args}')
-  print(f'**kwargs   = {kwargs}')
+  def show_parameters(*args, **kwargs):
+    "output the function parameters"
+    print(f'*args      = {args}')
+    print(f'**kwargs   = {kwargs}')
+  show_parameters(*args, **kwargs)
   xs = list(args) + list(kwargs.values())
   def decorator(f):
     predicate = lambda x: x == x >> 1 << 1
     @functools.wraps(f)
     def wrap(*args, **kwargs):
       "only accept even numbers to generate a new list"
-      print(f'*args      = {args}')
-      print(f'**kwargs   = {kwargs}')
+      show_parameters(*args, **kwargs)
       print(f'f.__name__ = {f.__name__}')
       nonlocal xs
       xs += f(*args, **kwargs)
