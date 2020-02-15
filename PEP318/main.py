@@ -25,6 +25,7 @@ def even_list(*args, **kwargs):
   show_parameters(*args, **kwargs)
   xs = list(args) + list(kwargs.values())
   def decorator(f):
+    "take the class wrap as a decorator"
     predicate = lambda x: x == x >> 1 << 1
     @functools.wraps(f)
     def wrap(*args, **kwargs):
