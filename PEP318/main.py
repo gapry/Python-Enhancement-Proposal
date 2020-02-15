@@ -12,20 +12,27 @@ class log():
       return f(*args, **kwargs)
     return wrap
 
-def even_list(f):
+def even_list(*args, **kwargs):
   "take the class wrap as a return"
-  predicate = lambda x: x == x >> 1 << 1
-  @functools.wraps(f)
-  def wrap(*args, **kwargs):
-    "only accept even numbers to generate a new list"
-    print(f'*args      = {args}')
-    print(f'**kwargs   = {kwargs}')
-    print(f'f.__name__ = {f.__name__}')
-    return list(filter(predicate, f(*args, **kwargs)))
-  return wrap
+  print(f'*args      = {args}')
+  print(f'**kwargs   = {kwargs}')
+  xs = list(args) + list(kwargs.values())
+  def decorator(f):
+    predicate = lambda x: x == x >> 1 << 1
+    @functools.wraps(f)
+    def wrap(*args, **kwargs):
+      "only accept even numbers to generate a new list"
+      print(f'*args      = {args}')
+      print(f'**kwargs   = {kwargs}')
+      print(f'f.__name__ = {f.__name__}')
+      nonlocal xs
+      xs += f(*args, **kwargs)
+      return list(filter(predicate, xs)) 
+    return wrap
+  return decorator
 
 @log()
-@even_list
+@even_list(-6, -5, -4, x = -3, y = -2, z = -1)
 def make_list(*args, **kwargs):
   "utilize the function parameters to generate a new list"
   self = make_list
