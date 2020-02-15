@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
+__author__     = "Gapry"
+__copyright__  = "Copyright 2020, Gapry"
+__date__       = "2020/02/15"
+__deprecated__ = False
+__license__    = "MIT"
+__maintainer__ = "Gapry"
+__status__     = "PoC"
+__version__    = "1.0.0"
+
 import functools
 
 class log():
@@ -12,26 +21,38 @@ class log():
       return f(*args, **kwargs)
     return wrap
 
-def even_list(f):
+def show_metadata(f):
+  print(f'[function name] {f.__name__}')
+  print(f'[function doc] {f.__doc__}')
+
+def even_list(*args, **kwargs):
   "take the class wrap as a return"
-  predicate = lambda x: x == x >> 1 << 1
-  @functools.wraps(f)
-  def wrap(*args, **kwargs):
-    "only accept even numbers to generate a new list"
+  def show_parameters(*args, **kwargs):
+    "output the function parameters"
     print(f'*args      = {args}')
     print(f'**kwargs   = {kwargs}')
-    print(f'f.__name__ = {f.__name__}')
-    return list(filter(predicate, f(*args, **kwargs)))
-  return wrap
+  show_parameters(*args, **kwargs)
+  xs = list(args) + list(kwargs.values())
+  def decorator(f):
+    "take the class wrap as a decorator"
+    predicate = lambda x: x == x >> 1 << 1
+    @functools.wraps(f)
+    def wrap(*args, **kwargs):
+      "only accept even numbers to generate a new list"
+      show_parameters(*args, **kwargs)
+      show_metadata(f)
+      nonlocal xs
+      xs += f(*args, **kwargs)
+      return list(filter(predicate, xs)) 
+    return wrap
+  return decorator
 
 @log()
-@even_list
+@even_list(-6, -5, -4, x = -3, y = -2, z = -1)
 def make_list(*args, **kwargs):
   "utilize the function parameters to generate a new list"
-  self = make_list
-  print(f'[even_list closure] {even_list(self).__closure__}')
-  print(f'[function name] {self.__name__}')
-  print(f'[function doc] {self.__doc__}')
+  print(f'[even_list closure] {even_list(make_list).__closure__}')
+  show_metadata(make_list)
   return list(args) + list(kwargs.values())
 
 def main():
