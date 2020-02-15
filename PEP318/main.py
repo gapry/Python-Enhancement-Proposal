@@ -15,7 +15,7 @@ class log():
   def __call__(self, f):
     "take the class wrap as a return"
     @functools.wraps(f)
-    def wrap(*args, **kwargs):
+    def wrap(self, *args, **kwargs):
       "output the runtime information"
       print(f'[log] ${f}')
       return f(*args, **kwargs)
@@ -51,7 +51,7 @@ def even_list(*args, **kwargs):
 @even_list(-6, -5, -4, x = -3, y = -2, z = -1)
 def make_list(*args, **kwargs):
   "utilize the function parameters to generate a new list"
-  print(f'[even_list closure] {even_list(make_list).__closure__}')
+  print('[even_list closure] {}'.format(even_list(*args, **kwargs)(make_list).__closure__))
   show_metadata(make_list)
   return list(args) + list(kwargs.values())
 
