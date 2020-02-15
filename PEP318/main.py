@@ -15,7 +15,7 @@ class log():
   def __call__(self, f):
     "take the class wrap as a return"
     @functools.wraps(f)
-    def wrap(*args, **kwargs):
+    def wrap(self, *args, **kwargs):
       "output the runtime information"
       print(f'[log] ${f}')
       return f(*args, **kwargs)
