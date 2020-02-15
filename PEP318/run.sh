@@ -4,5 +4,5 @@ declare -r py=/usr/bin/python3.8
 declare -r app=main.py
 
 clear
-$py $app
 bat $app
+$py $app
